@@ -1,9 +1,17 @@
 % Figure S2
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
-path = '../SupportingInformation/Data_Figure_S2';
-cd(path);
+clear; close all;
+
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/SupportingInformation/Data_Figure_S2']);
+else
+    cd([current_path, '\SupportingInformation\Data_Figure_S2']);
+end
 
 files = dir(pwd);
 dirFlags = [files.isdir];
@@ -35,7 +43,8 @@ for s = 1: length(subjectNames)
         grid on; axis square; box on;
         title([strrep(subfolderNames{f},'_', ' ') sprintf(' (%1.f traces)', length(csvFiles))])
         
-        cd .. % exiting Gain/Bkgd folder
+        cd .. % Exiting Gain/Bkgd condition folder
     end
-    cd .. % exiting subject's folder
+    cd .. % Exiting subject's folder
 end
+cd ..; cd ..; % Returning to ParadoxicalMisperception folder

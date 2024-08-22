@@ -1,23 +1,31 @@
 % Figure S4, Figure S5, and Figure S6
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
+clear; close all;
 
 plotFigNum = 4; % 4--plotting S4;  5--plotting S5;  6--plotting S6
 
 % Data folders for each figure
 if plotFigNum == 4
-    folder = '../SupportingInformation/Data_Figure_S4';
+    folder = 'Data_Figure_S4';
     subjectIDs = {'10003L'};
 elseif plotFigNum == 5 
-    folder = '../SupportingInformation/Data_Figure_S5';
+    folder = 'Data_Figure_S5';
     subjectIDs = {'10003L', '20114R'}; 
 elseif plotFigNum == 6
-    folder = '../SupportingInformation/Data_Figure_S6';
+    folder = 'Data_Figure_S6';
     subjectIDs = {'10003L'};
 end
 
-cd(folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/SupportingInformation/', folder]);
+else
+    cd([current_path, '\SupportingInformation\', folder]);
+end
  
 for s = 1: length(subjectIDs)
     subjectID = num2str(subjectIDs{s});
@@ -86,7 +94,7 @@ for s = 1: length(subjectIDs)
         title(subjectID);
     end    
 end
-
+cd ..; cd ..; % Returning to ParadoxicalMisperception folder
 %% Functions
 % Plotting individual subject points
 function [xLim] = plotPoints(curGain_all, curGain_indiv, color, shape, xLim)

@@ -1,11 +1,17 @@
 % Figure S3
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
+clear; close all;
 
-% Data folder
-all_folder = '../SupportingInformation/Data_Figure_S3';
-cd(all_folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/SupportingInformation/Data_Figure_S3']);
+else
+    cd([current_path, '\SupportingInformation\Data_Figure_S3']);
+end
 
 subjectID = '10003L';
 
@@ -51,7 +57,7 @@ for b = 1: length(numBackgrounds)
         
         for a = 1: size(curCond,1)
             plot(curCond.MatchedAlpha(a),curCond.MatchedD(a), 'o','Color',  color(index,:), 'MarkerFaceColor',  color(index,:),'markersize',7); 
-            plot ([curCond.TestAlpha(a) curCond.MatchedAlpha(a)],[curCond.TestD(a) curCond.MatchedD(a)],'Color', color(index,:), 'linewidth',1);
+            plot([curCond.TestAlpha(a) curCond.MatchedAlpha(a)],[curCond.TestD(a) curCond.MatchedD(a)],'Color', color(index,:), 'linewidth',1);
         end
         
         index= index+1;
@@ -65,3 +71,4 @@ for b = 1: length(numBackgrounds)
     set(groot,{'DefaultAxesXColor','DefaultAxesYColor','DefaultAxesZColor'},{'k','k','k'})
     grid on; box on;    
 end
+cd ..; cd ..; % Returning to ParadoxicalMisperception folder

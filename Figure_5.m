@@ -1,9 +1,17 @@
 % Figure 5 
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
+clear; close all;
 
-cd('../Data_Figure_5');
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figure_5']);
+else
+    cd([current_path, '\Data_Figure_5']);
+end
 
 files = dir(pwd);
 dirFlags = [files.isdir];
@@ -29,6 +37,6 @@ for f = 1:  length(folderNames)
     grid on; axis square; box on;
     title(['10003L' sprintf(' (%1.f traces)', length(csvNames))])
     
-    cd ..
+    cd ..;
 end
-
+cd ..; % Returning to ParadoxicalMisperception folder

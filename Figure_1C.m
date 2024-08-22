@@ -1,13 +1,21 @@
 % Figure 1C 
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc; 
+clear; close all;
 
-folder = '../Data_Figure_1C';
-cd(folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figure_1C']);
+else
+    cd([current_path, '\Data_Figure_1C']);
+end
 
 startDir = strcat( '', cd,'');
 fileNames = dir('*.csv');
+
 for i = 1: size(fileNames,1)
     
     trace_pixel = readtable(fileNames(i).name);
@@ -44,8 +52,9 @@ for i = 1: size(fileNames,1)
     figure('color','w'); hold on;
     plot(trace_arcmin(:,1),trace_arcmin(:,2),'k-','linewidth',1.1); % Plotting trace
     plot(0,0,'+','color','r','markersize',10, 'linewidth',4); % Plotting starting position red cross
-    plot([0 4],[-10 -10],'k-','linewidth',1.1) % Label for 4 arcmin bar
+    plot([0 4],[-10 -10],'k-','linewidth',1.1); % Label for 4 arcmin bar
     axisLim = 20;
     set(gca,'xlim',[-axisLim axisLim], 'ylim',[-axisLim axisLim], 'Color', [1 1 1], 'FontSize', 18); axis square;
     sprintf('Fig: %1.f\nD: %1.f\nAlpha: %1.2f\nSpeed:  %1.f', i, D, alpha, speed)
 end
+cd ..; % Returning to ParadoxicalMisperception folder

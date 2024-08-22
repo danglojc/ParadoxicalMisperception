@@ -1,10 +1,17 @@
 % Figure S1
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
+clear; close all;
 
-folder = '../SupportingInformation/Data_Figures_2_3_6_S1';
-cd(folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figures_2_3_6_S1']);
+else
+    cd([current_path, '\Data_Figures_2_3_6_S1']);
+end
  
 % Subject IDs
 subjectIDs = {'10003L', '20114R', '20229L', '20234L', '20237R', '20256R'};
@@ -71,7 +78,7 @@ for s = 1:  length(subjectIDs)
         title(subjectID);
     end   
 end
-
+cd ..; % Returning to ParadoxicalMisperception folder
 %% Functions
 % Plotting individual subject points
 function [xLim] = plotPoints(curGain_all, curGain_indiv, color, shape, xLim)

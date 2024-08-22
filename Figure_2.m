@@ -1,10 +1,17 @@
 % Figure 2
 % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
 
-clear; close all; clc;
+clear; close all;
 
-folder = '../Data_Figures_2_3_6_S1';
-cd(folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figures_2_3_6_S1']);
+else
+    cd([current_path, '\Data_Figures_2_3_6_S1']);
+end
  
 % Table storing all subjects data
 allGains = table();
@@ -75,6 +82,7 @@ for b = 1: length(numBackground)
     set(gca, 'FontSize', 18, 'fontname','helvetica');
     set(groot,{'DefaultAxesXColor','DefaultAxesYColor','DefaultAxesZColor'},{'k','k','k'});
 end
+cd ..; % Returning to ParadoxicalMisperception folder
 %% Functions
 % Plotting group averages with standard error of the mean bars
 function [color_zero] = plotAverages(b, allGains, subjects, numGains, color_plus, color_minus, color_zero)
@@ -118,9 +126,9 @@ function [alphaWorld]= makingQuivers(alphaWorld, worldMotion,perceivedmotion, xL
     end
 
     % Plotting a quiver length that is equivalent to alpha = 2 or alpha = 0, used for the legend
-    qscale = quiver(xLim-xLim+2,xLim-xLim+2,(xLim * fulllength),0  ,0, 'Color', [1 0 0], 'LineWidth', 1.2, 'HandleVisibility','off');
+    qscale = quiver(2,2,(xLim * fulllength),0  ,0, 'Color', [1 0 0], 'LineWidth', 1.2, 'HandleVisibility','off');
     qscale.ShowArrowHead = 'off';
-    plot(xLim-xLim+2+(xLim * fulllength),xLim-xLim+2,"diamond", 'Color', [1 0 0], 'MarkerSize', 3, 'MarkerFaceColor', [1 0 0], 'HandleVisibility','off');
+    plot(2+(xLim * fulllength),2,"diamond", 'Color', [1 0 0], 'MarkerSize', 3, 'MarkerFaceColor', [1 0 0], 'HandleVisibility','off');
 
     % Drawing arrow indicating anti/persistence
     if abs(alphaWorld-1) >0.02 && alphaWorld ~=0

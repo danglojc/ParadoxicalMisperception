@@ -5,8 +5,15 @@ clear; close all; clc;
 
 plotFigNum = 3; % 3--plotting Figure 3;   6--plotting Figure 6
 
-all_folder = '../Data_Figures_2_3_6_S1';
-cd(all_folder);
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figures_2_3_6_S1']);
+else
+    cd([current_path, '\Data_Figures_2_3_6_S1']);
+end
 
 startDir = strcat( '', cd,''); 
 fileNames = dir([startDir filesep '*.csv']); 
@@ -85,6 +92,7 @@ end
 % Plotting Figure 6
 if plotFigNum == 6
     [~] = Figure_6_plotRatioVsAlpha(subjects, ratioBAbsentX, alphaWorldBAbsentX, ratioBPresentY, alphaWorldBPresentY, color_plus, color_minus);
+    cd ..; % Returning to ParadoxicalMisperception folder
     return;
 end
 
@@ -112,6 +120,7 @@ h = get(gca,'Children');
 legend(labels,'FontSize', 22);
 set(groot,{'DefaultAxesXColor','DefaultAxesYColor','DefaultAxesZColor'},{'k','k','k'})
 
+cd ..; % Returning to ParadoxicalMisperception folder
 %% Functions for Figure 3
 % Plotting background-present ratios (y-axis) vs background-absent ratios (x-axis), and saving quiver lengths to indicate anti/persistence
 function [ratioBPresentY, ratioBAbsentX,alphaWorldBPresentY, alphaWorldBAbsentX,quivLengthX, quivLengthY, element, labels]= Figure_3_plotRatios(data_of_interest, ratioBPresentY, ratioBAbsentX,alphaWorldBPresentY, alphaWorldBAbsentX, axisLim, quivLengthX, quivLengthY, s, color, shape,row_gain, element, labels)
@@ -196,8 +205,8 @@ function [color_plus] = Figure_6_plotRatioVsAlpha(subjects, ratioBAbsentX, alpha
     labels{element} = strcat('D_{PM}/D_{WM} = 60^{1-α}');
   
     grid on; axis square; box on;
-    xlim([0.9 1.8]); xticks([0.9:0.1:1.8]);
-    ylim([0 1.5]); yticks([0:0.25:1.5]);
+    xlim([0.9 1.8]); xticks(0.9:0.1:1.8);
+    ylim([0 1.5]); yticks(0:0.25:1.5);
     xlabel('\alpha for world motion, \alpha_{WM}'); ylabel('[D_{PM} (arcmin^2/s) / D_{WM} (arcmin^2/s)]');
     set(gca, 'FontSize', 20, 'fontname','helvetica');
     

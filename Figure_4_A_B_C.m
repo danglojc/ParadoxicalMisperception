@@ -8,7 +8,16 @@
 
 clear; close all; clc;
 
-cd('../Data_Figure_4');
+% Setting path
+current_path = pwd;
+addpath(current_path);
+
+if ismac
+    cd([current_path, '/Data_Figure_4']);
+else
+    cd([current_path, '\Data_Figure_4']);
+end
+
 individGains= readtable('All_Eye_individTrials.csv');
 
 % Defining parameters
@@ -63,6 +72,7 @@ dataCols = [speedTable.Speed_Eye(speedTable.Background==1 & speedTable.Gain==-1.
 yticks(0:5:50); ylim([0 50])
 ylabel('Speed for eye motion, S_{EM} [arcmin/s]');
 
+cd ..; % Returning to ParadoxicalMisperception folder
 %% Function to implement 'Violin.m'
 function [dataCols] = plotFigure(dataCols, color_minus, color_plus, color_zero)
     categories = categorical({'-1.5' '+1.5' '0' '-1.5' '+1.5' '0'}); 
