@@ -32,7 +32,7 @@ function [alpha, D_log, msd_each_path] = calculatingDandAlpha(paths_x_y, duratio
     %
     % Associated with "A paradoxical misperception of relative motion" Josephine C. D’Angelo, Pavan Tiruveedhula, Raymond J. Weber, David W. Arathorn, Austin Roorda
     % Used to compute the diffusion constants and alphas for world motion, eye motion, and perceived motion
-    % Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
+    % Written by: Josie D'Angelo 2024.
 
 
     % Setting up for the mean square displacement calculation

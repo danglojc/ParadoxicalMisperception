@@ -1,5 +1,5 @@
 % Figure S1
-% Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
+% Written by: Josie D'Angelo 2024. 
 
 clear; close all;
 

@@ -1,5 +1,5 @@
 % Figure 4
-% Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
+% Written by: Josie D'Angelo 2024.
 
 % Violin Plot from:
 % Bechtold, Bastian, 2016. Violin Plots for Matlab, Github Project

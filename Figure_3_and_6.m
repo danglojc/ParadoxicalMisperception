@@ -1,6 +1,5 @@
 % Figure 3 and Figure 6
-% Written by: Josie D'Angelo 2024. Email: josephine_dangelo@berkeley.edu .
-
+% Written by: Josie D'Angelo 2024.
 clear; close all; clc;
 
 plotFigNum = 3; % 3--plotting Figure 3;   6--plotting Figure 6
