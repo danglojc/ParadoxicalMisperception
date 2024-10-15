@@ -2,7 +2,7 @@
 % Written by: Josie D'Angelo 2024.
 clear; close all; clc;
 
-plotFigNum = 3; % 3--plotting Figure 3;   6--plotting Figure 6
+plotFigNum = 6; % 3--plotting Figure 3;   6--plotting Figure 6
 
 % Setting path
 current_path = pwd;
@@ -180,7 +180,7 @@ function [ratioBAbsentX] = makeQuivers(alphaWorldBAbsentX, alphaWorldBPresentY, 
 end
 
 %% Function for Figure 6 
-% Plotting two different conditions of ratios (y-axis) vs alpha for world motion (x-axis), and adding model
+% Plotting two different conditions of ratios (y-axis) vs alpha for world motion (x-axis), and plotting predictive model
 function [color_plus] = Figure_6_plotRatioVsAlpha(subjects, ratioBAbsentX, alphaWorldBAbsentX, ratioBPresentY, alphaWorldBPresentY, color_plus, color_minus)
     close all;
 
@@ -198,8 +198,10 @@ function [color_plus] = Figure_6_plotRatioVsAlpha(subjects, ratioBAbsentX, alpha
     [labels, element] = plotRatiovsAlpha(alphaWorldBPresentY(2,:),ratioBPresentY(2,:),color_plus, element, subjects, labels); 
     
     % Modelling ratios vs Alpha relationship
+    timeInterval_frames = 2; % Units in frames
+    timeInterval_seconds = timeInterval_frames/60; % Convert to seconds (the AOSLO has a 60Hz frame rate)
     alphaXvals= linspace(0.9,1.8,1000);
-    model = (60).^(1-alphaXvals); 
+    model = (1/timeInterval_seconds).^(1-alphaXvals); 
     plot(alphaXvals, model, 'Color', [0 0 0], 'Linewidth', 2); 
     labels{element} = strcat('D_{PM}/D_{WM} = 60^{1-α}');
   
@@ -236,7 +238,7 @@ function [color_plus] = Figure_6_plotRatioVsAlpha(subjects, ratioBAbsentX, alpha
                 plot(alphas(s), ratios(s), shape,'Color', color,'linewidth',1,'markersize',15); hold on;
                 labels{element} = sprintf('%1.f:  %1.1f',subjects(s), -1.5);
             end
-            element =element+1;
+            element = element+1;
         end
 
     end
